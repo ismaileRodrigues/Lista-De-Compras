@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <h1>Lista de compras</h1>
+    
+</head>
+<body>
+    <nav>
+       <p><button id="inserir" class="valorReal">InserirValor</button></p>
+       <P><input type="number"  id="valor" class="valorReal" placeholder="R$"/></P> 
+      
+       
+       <select id="itens" class="valorReal" ></select>
+       <p>  <button id="calcular" class="valorReal">Calcular</button></p>
+       <p><button id="apagar" class="valorReal">Apagar ultimo valor</button> </p>
+        <p id="totalCompra">Total</p>
+    </nav>
+<div class="container">
+
+   
+    <header>
+    
+      <input id="inputTarefa" type="text" placeholder="Digite um item">
+    
+    
+     <button onclick="addTarefa()" id="btn-add" class="add">Adicionar</button>
+    </header>
+    
+    <main id="areaLista">
+    
+    </main>
+
+       
+
+        
+</div>
+
+
+
+
+<script src="./script.js"></script>
+</body>
+</html>
