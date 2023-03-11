@@ -3,31 +3,30 @@ let input = document.getElementById("inputTarefa");
 let btnAdd = document.getElementById("btn-add");
 let main = document.getElementById("areaLista");
 let res = document.getElementById("res");
-let valor = document.getElementById("valor");
+var valor = document.getElementById("valor");
 let inserir = document.getElementById("inserir");
 let totalCompra= document.getElementById("totalCompra");
 let itens= document.getElementById("itens");
+let itenResultado = document.getElementById("itenResultado");
+let details =document.querySelector('details')
+let AbrirOrcamento =document.querySelector('#AbrirOrcamento')
 
+const cart = []
 
 
 // Carrega as tarefas salvas no localStorage
 window.addEventListener('load', () => {
   let tarefas = JSON.parse(localStorage.getItem('tarefas'));
   if (tarefas) {
-    main.innerHTML = tarefas;
+   main.innerHTML = tarefas;
     contador = main.children.length;
   }
 });
 
 
-  
-
-
-
-
-
 
 function addTarefa() {
+ 
 
   //PEGAR O VALOR DIGITADO NO INPUT
   let valorInput = input.value;
@@ -41,16 +40,17 @@ function addTarefa() {
   if ((valorInput !== "") &&( valorInput !== null) && (valorInput !== undefined)) {
     ++contador;
    
-    let novoItem = `<div id="${contador}" class="item">
+    var novoItem = `<div id="${contador}" class="item">
         <div onclick="marcarTarefa(${contador})" class="item-icone">
             <i id="icone_${contador}" class="mdi mdi-circle-outline"></i>
         </div>
         <div onclick="marcarTarefa(${contador})" class="item-nome">
         
-            ${valorInput} 
+            ${valorInput}
 
            
         </div>
+       
         <button onclick="deletar(${contador})" class="delete"><i class="mdi mdi-delete"></i></button>
     </div>`;
 
@@ -63,9 +63,11 @@ function addTarefa() {
   }
 
  // Salva as tarefas no localStorage
+
  localStorage.setItem('tarefas', JSON.stringify(main.innerHTML));
 
 }
+
 
 
 function deletar(id) {
@@ -79,7 +81,9 @@ function deletar(id) {
 
 
 function marcarTarefa(id) {
+ 
   var item = document.getElementById(id);
+ 
   var classe = item.getAttribute("class");
   console.log(classe);
 
@@ -97,102 +101,84 @@ function marcarTarefa(id) {
     var icone = document.getElementById("icone_" + id);
     icone.classList.remove("mdi-check-circle");
     icone.classList.add("mdi-circle-outline");
+    
   }
 
 // Salva as tarefas no localStorage
 localStorage.setItem('tarefas', JSON.stringify(main.innerHTML));
 }
 
-
-let valores = []
-
-inserir.addEventListener('click',adicionarValor);
-
-let inputs = document.getElementById("valor");
-
- function adicionarValor(){ 
-  
-  let inputs = document.getElementById("valor").value;
-
-  let values= inputs.replace(/\D/g,"")  //Remove tudo o que não é dígito
-
-  itens.innerHTML+=`<option>R$ ${inputs}</option>`
-  
-
-  valores.push(parseInt(values))
-
-  // Salva os valores no localStorage
-  localStorage.setItem('valores', JSON.stringify(valores));
- 
- }
-
- 
-
  let botao = document.getElementById("calcular");
 
  botao.addEventListener('click',somarValores);
+ let acumulador = 0;
 
-
- function somarValores(){
+ function somarValores( ){
+ 
+  itenResultado.innerHTML+= `<p>${inserir.value}: R$ ${valor.value}</p>`;
+  contador = itenResultado.children.length;
   if(valor.value==0){
     alert('Insira um valor!')
     return;
 
 
   }
+  const cart2 = {
+    nome: inserir.value,
+    valor1: Number(valor.value)
+  };
+ 
+  cart.push(cart2);
+  valor.value = "";
+
+  acumulador = atualizarSoma(acumulador);
+ 
   
+  console.log(cart);
+  function atualizarSoma() {
+    acumulador = 0;
+   
+  for (let i = 0; i < cart.length; i++) {
+    acumulador += cart[i].valor1;
+  }
+  totalCompra.innerHTML=`R$${acumulador}`;
+ return acumulador;
 
-  adicionarValor()  
-  
-  let total = valores.reduce(function(acumulador, atual) {
-    return acumulador + atual
+}
 
-    
-  });
 
-  let centavos=total/100
-
-  totalCompra.innerHTML=`R$${centavos.toFixed(2)}`
   
   valor.focus()
   valor.value=''
   
  }
- let apagar = document.getElementById('apagar')
 
- apagar.addEventListener('click',()=>{
 
-  let select= document.getElementById("itens");
+ const orcamento = document.querySelector('.orcamento')
+ const div = document.querySelector('#itenResultado');
+ const button = document.querySelector('#salvar');
+// adicionar um ouvinte de evento de mudança à div
+div.addEventListener('input', () => {
+  // salvar o conteúdo da div no localStorage
+  localStorage.setItem('itenResultado', div.innerHTML);
+});
 
-  if(select.value===''){
-    
-    alert('Nada para apagar!')
-    totalCompra.innerHTML='R$ 0.00'
-   return;
-   
-  }
-  
-  valores.pop()
+// adicionar um ouvinte de evento "click" ao botão
+button.addEventListener('click', () => {
+
+  // salvar o conteúdo da div no localStorage0localStorage.setItem('itenResultado', div.innerHTML); 
+  itenResultado.innerHTML += acumulador
+  localStorage.setItem('itenResultado', div.innerHTML);
  
-  select.options[select.options.length-1].remove()
-  let total = valores.reduce(function(acumulador, atual) {
-    return acumulador + atual
+});
 
-
-  });
-
-  let centavos=total/100
-
-  totalCompra.innerHTML=`R$${centavos.toFixed(2)}`
-    
-
-  
-  
- })
-    
-
- 
-
+// verificar se já há um conteúdo salvo no localStorage
+const savedContent = localStorage.getItem('itenResultado');
+if (savedContent) {
+  // se houver um conteúdo salvo, atualize o conteúdo da div
+  div.innerHTML = savedContent;
+  div.parentElement.setAttribute('close', true);
+}
 
 
 input.addEventListener("keyup", function (event) {
@@ -211,3 +197,13 @@ valor.addEventListener("keyup", function (e) {
   }
 });
 
+AbrirOrcamento.addEventListener('click',()=>{
+  orcamento.style.display='block'
+})
+
+document.addEventListener('click', (event) => {
+  // Verifica se o clique foi fora do botão e da caixa de orçamento
+  if (!event.target.closest('#AbrirOrcamento') && !event.target.closest('.orcamento')) {
+    orcamento.style.display = 'none'
+  }
+})

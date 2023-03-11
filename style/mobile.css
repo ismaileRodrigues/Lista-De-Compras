@@ -1,0 +1,318 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #eeeeee;
+  background-color: #3b3737;
+  background-image: url(../img/compras.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+h1,h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 0 0 15px #000000;
+}
+.orcamento {
+  display: none;
+ 
+ }
+
+ #AbrirOrcamento{
+  display: flex;
+  margin: auto;
+  color: #ffffff;
+  padding: 5px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #5050e7;
+  box-shadow: 0 0 15px #000000;
+  cursor: pointer;
+ }
+
+ #AbrirOrcamento:hover{
+  background-color: #7979e7;
+ }
+nav{
+  display: flex;
+  margin-left: 30%;
+  flex-direction: column;
+
+}
+ 
+header {
+    max-width: 600px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  width: 90%;
+  /* border:1px solid red;*/
+  margin: auto auto;
+}
+
+   #res{
+  
+    color: #fff;
+    margin-top: 15px;
+   }
+    #itens{ 
+     position: absolute;
+
+    }
+   input{
+    display: block;
+    width: 100%;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 25px #212422;
+    
+   }
+    
+   input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+
+
+  details{
+    position: absolute;
+    margin-left: 15px;
+    width: 180px;
+    color: #5050e7;
+  
+  }
+  
+  details button{
+    margin-bottom: 9px;
+    margin-left: 25%;
+    color: #fff;
+    background-color: #48af88;
+    border: none;
+
+  }
+
+  details button:hover{
+    background-color: #5050e7;
+  }
+  details summary {
+    list-style: none;
+
+  
+  }
+
+  summary {
+    content: "";
+    background-image: url('../img/resume.png');
+    background-position: center;
+  background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    transition: 0.3s;
+    transform: 300ms;
+    
+  
+  }
+
+ summary:hover {
+   transform: scale(1.2);
+  }
+  
+
+#itenResultado{
+  background-color: #a5a1a1;
+  color: #fff;
+  box-shadow:0 0 15px #1b1717;
+  position: absolute;
+  text-align: center;
+  width: 150px;
+  outline: none;
+  border-radius: 14px;
+  transition: 0.5s;
+}
+
+::-webkit-input-placeholder{
+  text-align: center;
+}
+.valorReal{
+  display: block;
+  width: 100px;
+  height: 25px;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  margin-left: 10%;
+
+}
+
+
+#totalCompra{
+  border-radius: 8px;
+  margin-left: 10%;
+  width: 100px;
+  color: #ffffff;
+  font-size: 1rem;
+  text-align: center;
+  background-color: #6b6666;
+  box-shadow: 0 0 15px #212422;
+
+
+}
+
+ #calcular{
+  margin-left: 15%;
+  background-color: #e94646;
+  color: #d4f6d9;
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+  width: 70px;
+  height: 70px;
+  transition: 0.3s;
+  transition: 0.5s;
+  box-shadow: 0 0 15px #8aee99;
+  }
+  #calcular:hover, #apagar:hover{
+    background-color: #8aee99;
+  }
+
+#itens{
+  position: relative;
+}
+
+
+
+
+button.add {
+    
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  cursor: pointer;
+  background: green;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  height: 50px;
+  border-radius: 10px;
+  transition: 0.5s;
+
+}
+button.add:hover{
+  background-color: #8aee99;
+}
+
+main {
+  display: flex;
+  flex-flow: row wrap;
+  width: 90%;
+  margin: auto auto;
+  /* border:1px solid blue;*/
+  padding-top: 40px;
+}
+
+.item {
+  display: flex;
+  color: #ffffff;
+  position: static;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  background: #a5a1a1;
+  height: 50px;
+  width: 100%;
+  box-shadow: 0 0 20px #ccc;
+  margin-bottom: 2%;
+  cursor: pointer;
+  border-radius: 14px;
+}
+
+.item.clicado {
+  background: #8aee99;
+}
+
+
+.item.clicado .item-nome {
+  text-decoration: line-through;
+  color: gray;
+
+}
+
+.item-icone {
+  flex: 20%;
+  /* border:1px solid orangered;  */
+  font-size: 2rem;
+}
+
+.item-nome {
+  position: absolute;
+  margin-right: 15%;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.item-botao {
+  width: 100%;
+  /* border:1px solid green;    */
+}
+
+.delete {
+  position:absolute;
+  margin-left:80% ;
+  background: #534e4e;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.5s;
+
+}
+
+.delete:hover{
+  background: #bd3b3b;
+  
+}
+.mdi-circle-outline{
+  transition: 0.3s;
+}
+ .mdi-circle-outline:hover{
+  background: #008000;
+  border-radius: 50%;
+ }
+.mdi-check-circle {
+  color: #008000;
+}
+
+
+@media screen and (orientation: landscape) {
+
+  #AbrirOrcamento{
+   margin-left: 45%;
+  }
+
+  #calcular{ 
+    margin-left: 22%;
+  }
+
+  #inserir,#valor,#totalCompra{
+    margin-left: 20%;
+  }
+  body {
+    background-position:center;
+  }
+
+}

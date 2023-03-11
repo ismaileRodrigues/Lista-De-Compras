@@ -3,29 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" media="screen and (max-width:800px)" href="../style/mobile.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <h1>Lista de compras</h1>
-    
+   
+    <button id="AbrirOrcamento">Orçamento</button>
 </head>
 <body>
+    <div class="orcamento">
+    <details> 
+        <button id="salvar">Salvar</button>
+        <summary></summary>
+        
+        <div id="itenResultado" contenteditable="true">
+
+        </div>
+        
+    </details>
+    
     <nav>
-       <p><button id="inserir" class="valorReal">InserirValor</button></p>
+       <p><input type="text"  id="inserir" class="valorReal"placeholder="Produto"></p>
        <P><input type="number"  id="valor" class="valorReal" placeholder="R$"/></P> 
       
-       
-       <select id="itens" class="valorReal" ></select>
-       <p>  <button id="calcular" class="valorReal">Calcular</button></p>
-       <p><button id="apagar" class="valorReal">Apagar ultimo valor</button> </p>
-        <p id="totalCompra">Total</p>
+    
+       <p>  <button id="calcular">Calcular</button></p>
+        <span id="totalCompra">Total</span>
     </nav>
+
+</div>
 <div class="container">
 
    
     <header>
-    
+        <h2>Lista de compras</h2>
       <input id="inputTarefa" type="text" placeholder="Digite um item">
     
     
@@ -44,6 +55,6 @@
 
 
 
-<script src="./script.js"></script>
+<script src="./js/script.js"></script>
 </body>
 </html>
