@@ -141,7 +141,7 @@ localStorage.setItem('tarefas', JSON.stringify(main.innerHTML));
   for (let i = 0; i < cart.length; i++) {
     acumulador += cart[i].valor1;
   }
-  totalCompra.innerHTML=`R$${acumulador}`;
+  totalCompra.innerHTML=`R$${acumulador.toFixed(2)}`;
  return acumulador;
 
 }
