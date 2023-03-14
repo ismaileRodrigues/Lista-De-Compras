@@ -142,7 +142,7 @@ localStorage.setItem('tarefas', JSON.stringify(main.innerHTML));
     acumulador += cart[i].valor1;
   }
   totalCompra.innerHTML=`R$${acumulador}`;
- return acumulador.toFixed(2);
+ return acumulador;
 
 }
 
@@ -167,7 +167,7 @@ div.addEventListener('input', () => {
 button.addEventListener('click', () => {
 
   // salvar o conteúdo da div no localStorage0localStorage.setItem('itenResultado', div.innerHTML); 
-  itenResultado.innerHTML += acumulador
+  itenResultado.innerHTML += `R${acumulador}`
   localStorage.setItem('itenResultado', div.innerHTML);
  
 });
