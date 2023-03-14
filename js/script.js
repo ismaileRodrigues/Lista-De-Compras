@@ -167,7 +167,7 @@ div.addEventListener('input', () => {
 button.addEventListener('click', () => {
 
   // salvar o conteúdo da div no localStorage0localStorage.setItem('itenResultado', div.innerHTML); 
-  itenResultado.innerHTML += `R${acumulador}`
+  itenResultado.innerHTML += `R$ ${acumulador}`
   localStorage.setItem('itenResultado', div.innerHTML);
  
 });
