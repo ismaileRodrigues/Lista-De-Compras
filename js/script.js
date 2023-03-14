@@ -131,7 +131,7 @@ localStorage.setItem('tarefas', JSON.stringify(main.innerHTML));
   cart.push(cart2);
   valor.value = "";
 
-  acumulador = atualizarSoma(acumulador);
+  acumulador = atualizarSoma(acumulador.toFixed(2));
  
   
   console.log(cart);
@@ -142,7 +142,7 @@ localStorage.setItem('tarefas', JSON.stringify(main.innerHTML));
     acumulador += cart[i].valor1;
   }
   totalCompra.innerHTML=`R$${acumulador}`;
- return acumulador;
+ return acumulador.toFixed(2);
 
 }
 
